@@ -108,7 +108,7 @@ func train(input_array: Array, target_array: Array):
 func set_raycasts(_raycasts: Array[RayCast2D]):
 	raycasts = _raycasts
 
-func get_inputs_from_raycasts():
+func get_inputs_from_raycasts() -> Array:
 	
 	var _input_array: Array[float]
 	
@@ -117,8 +117,10 @@ func get_inputs_from_raycasts():
 	
 	return _input_array
 
-func get_prediction_from_raycasts(_inputs: Array[float]):
-	return predict(_inputs)
+func get_prediction_from_raycasts(optional_val: Array[float]) -> Array:
+	var _array_ = get_inputs_from_raycasts()
+	_array_.append_array(optional_val)
+	return predict(_array_)
 
 func get_distance(_raycast: RayCast2D):
 	var distance: float = 1.0
